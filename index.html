@@ -1,0 +1,108 @@
+<html lang="zh"><head>
+    <meta charset="utf-8">
+    <link rel="manifest" href="/manifest.json">
+    <title>Soulter</title>
+    <link rel="icon" type="image/png" href="/img/avatar.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" ,="" interactive-widget="resizes-content">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@soulter_">
+    <meta name="twitter:creator" content="@soulter_">
+    <meta name="twitter:title" content="Soulter's Bio">
+    <meta name="twitter:image" content="https://soulter.github.io/social_card.png">
+    <meta name="twitter:description" content="Soulter's Personal Bio">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Soulter's Bio">
+    <meta property="og:description" content="Soulter's Personal Bio">
+    <meta property="og:image" content="https://soulter.github.io/social_card.png">
+    <meta property="og:url" content="https://soulter.github.io">
+    <meta property="og:site_name" content="Soulter's Bio">
+    
+    <!-- 使用整合后的CSS文件 -->
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body class="">
+    
+    <div class="circle-container">
+      <div class="circle" id="circle1"></div>
+      <div class="circle" id="circle2"></div>
+      <div class="circle" id="circle3"></div>
+    </div>
+    
+    <!-- 添加新的背景层 -->
+    <div class="terminal-background"></div>
+    <div class="code-grid"></div>
+    
+    <div class="container">
+      <div class="terminal" id="terminal">
+        <div class="terminal-content">
+          <p class="old-prompt">
+            <span class="username">/soulter</span><span class="separator">$</span> whoami
+          </p>
+          <p class="typedLine">Hi! I'm Soulter. I'm a computer enthusiast, full-stack developer, obsessed with FOSS. Wanna be an indie dev with a successful startup. </p>
+          <p class="typedLine">Keywords: Python, AstrBot, Golang, Computer Science, AI, LLM, Agent, Minecraft, Guitar, ACG, Astronomy, Rock Music, Influencer, Americano</p>
+          <p class="typedLine">Type <b>help</b> to see available commands.</p>
+          
+          <div id="command-output"></div>
+          
+          <p id="prompt">
+            <span class="username">/soulter</span><span class="separator">$</span> 
+            <span class="input-container">
+              <input type="text" id="command-input" class="inputField" autofocus="" autocomplete="off" spellcheck="false" style="width: 1ch;">
+              <span class="cursor" style="opacity: 0;">|</span>
+            <span class="suggestion" style="display: none; left: calc(4ch);">r</span></span>
+          </p>
+        </div>
+      </div>
+      <div class="credits">
+        Inspired by <a href="https://sdsa.ai/" target="_blank">/dev/agents</a>
+      </div>
+    </div>
+
+    <!-- 引入命令系统JS -->
+    <script src="commands.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        document.body.classList.remove('loading');
+        
+        const terminal = document.getElementById('terminal');
+        const commandInput = document.getElementById('command-input');
+        const cursor = document.querySelector('.cursor');
+        
+        // 聚焦输入框
+        commandInput.focus();
+        
+        // 点击终端时聚焦输入框
+        terminal.addEventListener('click', function() {
+          commandInput.focus();
+        });
+        
+        // 处理输入框失去焦点时隐藏光标
+        commandInput.addEventListener('blur', function() {
+          cursor.style.opacity = '0';
+        });
+        
+        // 处理输入框获得焦点时显示光标
+        commandInput.addEventListener('focus', function() {
+          cursor.style.opacity = '1';
+        });
+        
+        // 监听窗口大小变化，保持滚动位置
+        window.addEventListener('resize', function() {
+          // 延迟执行滚动，等待布局调整完成
+          setTimeout(() => {
+            const container = document.querySelector('.container');
+            container.scrollTop = container.scrollHeight;
+          }, 100);
+        });
+        
+        // 初始化命令系统
+        const commandSystem = new CommandSystem();
+        
+
+      });
+    </script>
+  
+
+</body></html>

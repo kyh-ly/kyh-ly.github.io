@@ -1,0 +1,531 @@
+:root {
+  --hue: 210;
+  --vermillion: #ff735a;
+  --text-color: hsl(var(--hue), 100%, 94%);
+  --dim-text-color: hsla(var(--hue), 100%, 90%, 50%);
+  --background-color: hsl(var(--hue), 10%, 10%);
+  --link-color: #83a6ff;
+  --link-hover-color: #bdd0ff;
+  --button-color: var(--vermillion);
+  --button-hover-color: var(--vermillion);
+}
+
+/* 基本样式 */
+body {
+  font-family: 'Monaspace Neon', monospace;
+  font-size: calc(max(2.5vmin, 14px)); /* 减小默认字体大小 */
+  font-weight: 200;
+  line-height: 133%;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  font-size: calc(max(5vmin, 16pt));
+  font-weight: 200;
+}
+
+/* 字体定义 */
+@font-face {
+  font-family: 'Monaspace Krypton';
+  font-weight: 1 999;
+  src: url('/public/fonts/MonaspaceKryptonVarVF[wght,wdth,slnt].woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Monaspace Neon';
+  font-weight: 1 999;
+  src: url('/public/fonts/MonaspaceNeonVarVF[wght,wdth,slnt].woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Monaspace Xenon';
+  font-weight: 1 999;
+  src: url('/public/fonts/MonaspaceXenonVarVF[wght,wdth,slnt].woff2') format('woff2');
+}
+
+/* 容器和终端样式 */
+.container {
+  max-width: 100%;
+  margin: 0;
+  padding: 2rem;
+  box-sizing: border-box;
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.terminal {
+  height: 100%;
+  min-height: auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  box-sizing: border-box;
+  mix-blend-mode: screen;
+}
+
+.terminal-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+/* 命令输出区域 */
+#command-output {
+  flex: 0 1 auto;
+  overflow-y: auto;
+  max-width: 100%;
+  width: 100%;
+}
+
+/* 提示符样式 */
+#prompt {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  margin-top: 1em;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.username, .separator {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.username {
+  min-width: auto;
+  margin-right: 0;
+}
+
+.separator {
+  margin: 0 0.5em 0 0.25em;
+}
+
+/* 输入区域样式 */
+.input-container {
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  margin-left: 0;
+}
+
+input.inputField {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  padding: 0;
+  margin: 0;
+  width: auto;
+  min-width: 1ch;
+  position: relative;
+  caret-color: transparent;
+  line-height: normal; /* 确保行高一致 */
+}
+
+.cursor {
+  position: absolute; /* 改为绝对定位 */
+  left: calc(100% - 10px); /* 定位在输入框右侧 */
+  bottom: 0; /* 对齐底部 */
+  display: inline-block;
+  animation: cursor-blink 1.5s infinite;
+  font-weight: 700;
+  height: 1.2em; /* 固定高度 */
+  transform: translateY(-10%); /* 微调位置以更好地对齐 */
+}
+
+/* 自动补全建议样式 */
+.suggestion {
+  position: absolute;
+  display: inline-block;
+  color: var(--dim-text-color);
+  pointer-events: none;
+  white-space: pre;
+  z-index: 0;
+}
+
+/* 命令链接样式 */
+.command-link {
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+}
+
+.command-link:hover {
+  text-decoration: underline;
+  color: var(--link-hover-color);
+}
+
+/* 输出样式 */
+.old-prompt {
+  color: var(--dim-text-color);
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 1em;
+  white-space: nowrap;
+}
+
+.old-prompt .username {
+  min-width: auto;
+  margin-right: 0;
+}
+
+.old-prompt .separator {
+  margin: 0 0.5em 0 0.25em;
+}
+
+.typedLine {
+  animation: reveal .2s linear forwards;
+  -webkit-mask-position: 0;
+  mask-position: 0;
+  -webkit-mask-size: 200%;
+  mask-size: 200%;
+  max-width: 80ch;
+  white-space: pre-wrap;
+}
+
+/* 链接和按钮样式 */
+a, a:visited, .hoverLink {
+  color: var(--link-color);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+a:hover, .hoverLink:hover {
+  color: var(--link-hover-color);
+  text-decoration: underline;
+}
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  color: var(--button-color);
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: 133%;
+}
+
+button:hover, span.cwd:hover {
+  color: var(--button-hover-color);
+}
+
+button:hover::before {
+  content: ">";
+  float: left;
+  margin-left: -0.75em;
+}
+
+/* 内容样式 */
+.terminal p {
+  margin-top: 0;
+  max-width: 80ch;
+}
+
+/* 背景圆圈容器 */
+.circle-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.circle {
+  position: absolute;
+  top: -80vmax;
+  left: 40%;
+  width: 100vmax;
+  height: 100vmax;
+  border-radius: 50%;
+  mix-blend-mode: soft-light; /* 更柔和的混合模式 */
+  filter: blur(120px); /* 增加模糊效果 */
+}
+
+#circle1 {
+  background-color: rgba(235, 223, 135, 0.2);
+  background-color: color(display-p3 0.92 0.87 0 / 0.2);
+  animation: orbit 18s infinite ease-in-out alternate;
+}
+
+#circle2 {
+  background-color: rgba(0, 200, 255, 0.2);
+  background-color: color(display-p3 0 0.78 1.0 / 0.2);
+  animation: rorbit 24s infinite ease-in-out alternate;
+}
+
+#circle3 {
+  background-color: rgba(254, 182, 255, 0.2);
+  background-color: color(display-p3 1.0 0.71 1.0 / 0.2);
+  animation: orbit 20s infinite ease-in-out alternate-reverse;
+}
+
+/* 背景效果增强 */
+.terminal-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+  background: 
+    linear-gradient(125deg, rgba(15, 15, 15, 0.9) 0%, rgba(5, 5, 5, 0.95) 100%),
+    radial-gradient(circle at 20% 80%, rgba(10, 40, 120, 0.3) 0%, transparent 60%), 
+    radial-gradient(circle at 80% 10%, rgba(120, 10, 80, 0.25) 0%, transparent 50%);
+  background-size: 300% 300%, 200% 200%, 200% 200%;
+  animation: gradientShift 45s ease infinite;
+}
+
+/* 删除网格背景，可以留下元素但不设置背景图案 */
+.code-grid {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -3;
+  opacity: 0;
+}
+
+/* 滚动条样式 */
+.container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.container::-webkit-scrollbar-thumb {
+  background-color: var(--dim-text-color);
+  border-radius: 4px;
+}
+
+/* 动画 */
+@keyframes cursor-blink {
+  0% { opacity: 1.0; }
+  50% { opacity: 1.0; }
+  66% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes reveal {
+  0% { -webkit-mask-position: 100% 100%; mask-position: 100% 100%; }
+  to { -webkit-mask-position: 0 0; mask-position: 0 0; }
+}
+
+@keyframes orbit {
+  0% { transform: rotate(0deg) translateX(20vmin) rotate(0deg); }
+  100% { transform: rotate(360deg) translateX(20vmin) rotate(-360deg); }
+}
+
+@keyframes rorbit {
+  100% { transform: rotate(0deg) translateX(20vmin) rotate(0deg); }
+  0% { transform: rotate(360deg) translateX(20vmin) rotate(-360deg); }
+}
+
+/* 背景动画 */
+@keyframes gradientShift {
+  0% { background-position: 0% 0%, 0% 0%, 0% 0%; }
+  50% { background-position: 100% 100%, 50% 50%, 100% 0%; }
+  100% { background-position: 0% 0%, 0% 0%, 0% 0%; }
+}
+
+/* 添加迁移内容的样式 */
+.story-content {
+  line-height: 1.5;
+  max-width: 80ch;
+  font-size: 0.95em;
+}
+
+.story-content p {
+  margin-bottom: 1em;
+}
+
+.skills-list {
+  list-style-type: none;
+  padding-left: 0;
+  line-height: 1.6;
+}
+
+.skills-list li {
+  margin-bottom: 0.5em;
+}
+
+.projects-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5em;
+}
+
+.project-item {
+  border-left: 3px solid var(--link-color);
+  padding-left: 1em;
+}
+
+.project-item h3 {
+  margin: 0 0 0.5em 0;
+  color: var(--link-color);
+}
+
+.project-item p {
+  margin: 0.5em 0;
+}
+
+.small-text {
+  font-size: 0.8em;
+  color: var(--dim-text-color);
+}
+
+.contact-info ul {
+  list-style-type: none;
+  padding-left: 0;
+  line-height: 1.6;
+}
+
+.contact-info li {
+  margin-bottom: 0.5em;
+}
+
+.experience, .education {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2em;
+}
+
+.exp-item, .edu-item {
+  border-left: 3px solid var(--link-color);
+  padding-left: 1em;
+}
+
+.exp-date, .edu-date {
+  font-size: 0.9em;
+  color: var(--dim-text-color);
+}
+
+.exp-title, .edu-title {
+  font-weight: bold;
+  margin: 0.3em 0;
+}
+
+.edu-note {
+  font-size: 0.9em;
+  color: var(--dim-text-color);
+  margin: 0.2em 0;
+}
+
+.hobbies ol {
+  padding-left: 1.5em;
+  line-height: 1.6;
+}
+
+.hobbies li {
+  margin-bottom: 1em;
+}
+
+/* 添加多媒体内容样式 */
+.media-container {
+  margin: 1em 0;
+  max-width: 100%;
+}
+
+.media-img {
+  max-width: 100%;
+  border-radius: 4px;
+  margin: 0.5em 0;
+  display: block;
+}
+
+.media-video {
+  max-width: 100%;
+  border-radius: 4px;
+  display: block;
+}
+
+.media-caption {
+  font-size: 0.8em;
+  color: var(--dim-text-color);
+  margin-top: 0.5em;
+  font-style: italic;
+}
+
+/* 内容样式调整 */
+.terminal p, 
+.terminal .typedLine, 
+#command-output p {
+  font-size: 0.95em; /* 稍微减小内容字体 */
+  max-width: 80ch;
+  line-height: 1.4;
+}
+
+/* 致谢信息样式 */
+.credits {
+  position: fixed;
+  bottom: 10px;
+  right: 15px;
+  font-size: 0.5em;
+  color: var(--dim-text-color);
+  z-index: 10;
+}
+
+.credits a {
+  color: var(--dim-text-color);
+  text-decoration: none;
+}
+
+.credits a:hover {
+  color: var(--link-hover-color);
+  text-decoration: underline;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+  
+  .terminal p, 
+  .terminal .typedLine, 
+  #command-output p {
+    max-width: 100%;
+  }
+  
+  body {
+    font-weight: 300;
+  }
+
+  .project-item, .exp-item, .edu-item {
+    border-left-width: 2px;
+  }
+  
+  .skills-list, .contact-info ul, .hobbies ol {
+    padding-left: 0;
+  }
+  
+  .hobbies li {
+    margin-left: 1em;
+  }
+}
