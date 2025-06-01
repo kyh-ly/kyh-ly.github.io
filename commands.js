@@ -139,16 +139,16 @@ class CommandSystem {
     
     this.register('skills', 'My technical skills', () => {
       return `<ul class="skills-list">
-        <li><strong>Backend:</strong> Python / Golang / Java / C++</li>
+        <li><strong>Backend:</strong> Python / Golang / Java / C++ / C </li>
         <li><strong>Frontend:</strong> Vue / JavaScript / HTML / CSS</li>
-        <li><strong>Storage:</strong> MySQL / MongoDB / SQLite / ES / Redis / MinIO / MiniOB</li>
-        <li><strong>System Admin:</strong> Docker / K8S / ...</li>
-        <li><strong>Gateway/LB:</strong> Caddy</li>
-        <li><strong>CI/CD:</strong> Git / GitHub Workflow</li>
-        <li><strong>PaaS:</strong> Vercel / Cloudflare</li>
-        <li><strong>Filming:</strong> Adobe Premiere / Adobe Photoshop</li>
-        <li><strong>IDE:</strong> VSCode / Jetbrains / AndroidStudio / Vim</li>
-        <li><strong>OS:</strong> Windows, MacOS, ArchLinux, Ubuntu, Debian</li>
+        <li><strong>Storage:</strong> MySQL / MongoDB / SQLite / ES / Redis </li>
+        <li><strong>System Admin:</strong> Docker / K8S / Jenkins </li>
+        <li><strong>Application Security Testing:</strong> Clang-Tidy(SAST) / Valgrind(DAST) / ASAN(DAST) / Gcov(DAST) / PC-Lint / tree-sitter / Codeql / Coverity(learning) / SonarQube(learning)</li>
+        <li><strong>Gateway/LB:</strong> Nginx / Tomcat / Caddy </li>
+        <li><strong>CI/CD:</strong> Git / SVN </li>
+        <li><strong>PaaS:</strong> Cloudflare </li>
+        <li><strong>IDE:</strong> VSCode / Jetbrains / Emacs </li>
+        <li><strong>OS:</strong> Windows, FreeBSD / Fedora / Ubuntu</li>
       </ul>`;
     });
     
@@ -183,11 +183,10 @@ class CommandSystem {
     this.register('contact', 'Fell free to contact me', () => {
       return `<div class="contact-info">
         <ul>
-          <li><strong>E-mail:</strong> <span style="font-family: monospace;background-color: rgba(128,128,128,0.2); padding: 3px; border-radius: 3px;">echo 'c291bHRlckBxcS5jb20K' | base64 -d</span></li>
-          <li><strong>Telegram:</strong> <a href="https://t.me/soulter618" target="_blank">soulter618</a></li>
-          <li><strong>QQ:</strong> 905617992</li>
-          <li><strong>GitHub:</strong> <a href="https://github.com/Soulter" target="_blank">@soulter</a></li>
-          <li><strong>Twitter:</strong> <a href="https://twitter.com/soulter_" target="_blank">@soulter_</a></li>
+          <li><strong>E-mail:</strong> <span style="font-family: monospace;background-color: rgba(128,128,128,0.2); padding: 3px; border-radius: 3px;"> kyhmorningstar@gmail.com </span></li>
+          <li><strong>QQ:</strong> 1511226779 </li>
+          <li><strong>GitHub:</strong> <a href="https://github.com/kyh-ly" target="_blank">@kyh-ly</a></li>
+          <li><strong>Twitter:</strong> <a href="https://x.com/kyhliny" target="_blank">@kyhliny</a></li>
         </ul>
       </div>`;
     });
@@ -195,20 +194,12 @@ class CommandSystem {
     this.register('experience', 'Work experience', () => {
       return `<div class="experience">
         <div class="exp-item">
-          <div class="exp-date">February 2025 - </div>
-          <div class="exp-title">MoonShot - Software Engineer Intern (LLM Agent)</div>
+          <div class="exp-date">June 2024 - </div>
+          <div class="exp-title">Huawei - Software Engineer Intern - 5G Engineering Productivity Team</div>
         </div>
         <div class="exp-item">
-          <div class="exp-date">April 2024 - September 2024</div>
-          <div class="exp-title">Chinese Academy of Sciences (CASIA) - AIGC, LLM Agent - MAIS</div>
-        </div>
-        <div class="exp-item">
-          <div class="exp-date">November 2023 - January 2024</div>
-          <div class="exp-title">Red Note - Software Engineer Intern - Content Publishing Team</div>
-        </div>
-        <div class="exp-item">
-          <div class="exp-date">August 2023 - November 2023</div>
-          <div class="exp-title">Sohu - Software Engineer Intern - Big Data Center</div>
+          <div class="exp-date">August 2021 - June 2024</div>
+          <div class="exp-title">Huawei - Software Engineer Intern - Data Communication POC Team</div>
         </div>
       </div>`;
     });
@@ -216,14 +207,13 @@ class CommandSystem {
     this.register('education', 'Education background', () => {
       return `<div class="education">
         <div class="edu-item">
-          <div class="edu-date">2025 - 2028</div>
-          <div class="edu-title">BUPT - LLM, AIGC, RAG</div>
+          <div class="edu-date">2018 - 2021</div>
+          <div class="edu-title">USTC - Arch lab 502</div>
+          <div class="edu-note">IoV(Internet of Vehicles), RTOS, Time-triggered schedule, ADS, SLAM </div>
         </div>
         <div class="edu-item">
-          <div class="edu-date">2021 - 2025</div>
-          <div class="edu-title">USTB</div>
-          <div class="edu-note">Ranked 2nd in the major</div>
-          <div class="edu-note">Member at <a href="https://ustb-806.github.io/" target="_blank">USTB-806</a></div>
+          <div class="edu-date">2014 - 2018</div>
+          <div class="edu-title">QU</div>
         </div>
       </div>`;
     });
@@ -231,20 +221,11 @@ class CommandSystem {
     this.register('hobbies', 'My hobbies and interests', () => {
       return `<div class="hobbies">
         <ol>
-          <li><strong>🎸 Guitar:</strong> I developed an interest in playing the guitar after watching "Bocchi the Rock!" in 2023. I haven't been practicing for long, so my skills are still quite basic.</li>
-          <p>Hanairo no Seisyun - Utatanekana - Too many losing heroines!</p>
-          <div class="media-container">
-            <video class="media-video" src="http://s3.neko.soulter.top/personal/soulter-huaseqingchun-ver1.mp4" controls loop preload="metadata" playsinline></video>
-          </div>
-          <li><strong>🪐 Astronomy:</strong> I enjoy watching sci-fi movies, novels, and documentaries about the universe. I highly recommend the documentary "How the Universe Works" which sparked my interest in this field.</li>
-          <div class="media-container">
-            <img class="media-img" src="https://drive.soulter.top/f/znF4/7.jpg" alt="Astronomy night">
-            <p class="media-caption">We(<a href="https://blog.bosswnx.xyz/">Nelson</a>, <a href="https://kevin56348.github.io/blog/">Kevin</a>) stayed up all night to capture the Quadrantid meteor shower 🌠 at the Beijing Bulaotun Observatory. Photo by kevin, camera by nelson</p>
-          </div>
-          <li><strong>📺 Anime:</strong> I love watching anime. You can find the list of anime I've watched <a href="https://blog.soulter.top/doing" target="_blank">here</a>.</li>
-          <li><strong>📺 Video Editing and Content Creation:</strong> In 2015, after watching Minecraft videos by ZiMin, I was inspired to create my own and upload them to Youku. I ended up uploading over a hundred Minecraft videos, which are now my black history :(. In 2017, I moved to Bilibili. Due to my busy studies, I have stopped updating for now.</li>
-          <li><strong>💻 Gadgets:</strong> I love all kinds of electronic devices</li>
-          <li><strong>🎮 Gaming:</strong> Minecraft / Apex Legends / …</li>
+          <li><strong>🎷| 🎇 Saxophone:</strong> I developed an interest in playing the saxophone . I haven't bought a musical instrument of my own yet, this is what I need to do next </li>
+          <li><strong>🪀 YoYo:</strong> I enjoy watching and playing YoYo . This is a great sport that help to exercise your figer</li>
+          <li><strong>📺 Anime:</strong> I love watching anime.</li>
+          <li><strong>💻 Gadgets:</strong> Passionate about computer architecture, like CPU,GPU,SSD. </li>
+          <li><strong>🎮 Gaming:</strong> Assassin's Creed / Uncharted / Tomb Raider / EA SPORT FC / …</li>
         </ol>
       </div>`;
     });
@@ -255,33 +236,29 @@ class CommandSystem {
     });
 
     this.register('blog', 'My blog', () => {
-        return `<p>My blog is <a href="https://blog.soulter.top" target="_blank">here</a>.</p>`;
+        return `<p>My blog is <a href="" target="_blank">here</a>.</p>`;
         }
     );
 
     // 添加社交媒体命令
     this.register('github', 'Visit my GitHub profile', () => {
-      window.open('https://github.com/Soulter', '_blank');
+      window.open('https://github.com/kyh-ly', '_blank');
       return 'Opening GitHub profile...';
     });
     
-    this.register('wechat', 'My WeChat QR code', () => {
+    /*this.register('wechat', 'My WeChat QR code', () => {
       return `<div class="media-container">
         <img class="media-img" src="https://drive.soulter.top/f/pYfA/d903f4fa49a496fda3f16d2be9e023b5.png" alt="WeChat QR Code">
         <p class="media-caption">Scan QR code to add my WeChat</p>
       </div>`;
-    });
+    });*/
 
     this.register('social', 'All my social links', () => {
       return `<p>Find me on social media:</p>
       <ul class="social-links">
-        <li><a href="https://github.com/Soulter" target="_blank">GitHub</a></li>
-        <li><a href="https://space.bilibihelpli.com/29867566" target="_blank">Bilibili</a></li>
-        <li><a href="https://music.163.com/#/user/home?id=432494501" target="_blank">NetEase Music</a></li>
-        <li><a href="https://afdian.com/a/soulter" target="_blank">Afdian</a></li>
-        <li><a href="https://steamcommunity.com/profiles/76561198392031497" target="_blank">Steam</a></li>
+        <li><a href="https://github.com/kyh-ly" target="_blank">GitHub</a></li>
+        <li><a href="https://space.bilibili.com/432103862?spm_id_from=333.788.0.0" target="_blank">Bilibili</a></li>
       </ul>
-      <p>Type <code>wechat</code> to see my WeChat QR code.</p>`;
     });
     
   }
