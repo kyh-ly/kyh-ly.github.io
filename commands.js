@@ -221,7 +221,7 @@ class CommandSystem {
     this.register('hobbies', 'My hobbies and interests', () => {
       return `<div class="hobbies">
         <ol>
-          <li><strong>🎷| 🎇 Saxophone:</strong> I developed an interest in playing the saxophone . I haven't bought a musical instrument of my own yet, this is what I need to do next </li>
+          <li><strong>🎷 Saxophone:</strong> I developed an interest in playing the saxophone . I haven't bought a musical instrument of my own yet, this is what I need to do next </li>
           <li><strong>🪀 YoYo:</strong> I enjoy watching and playing YoYo . This is a great sport that help to exercise your figer</li>
           <li><strong>📺 Anime:</strong> I love watching anime.</li>
           <li><strong>💻 Gadgets:</strong> Passionate about computer architecture, like CPU,GPU,SSD. </li>
@@ -258,7 +258,7 @@ class CommandSystem {
       <ul class="social-links">
         <li><a href="https://github.com/kyh-ly" target="_blank">GitHub</a></li>
         <li><a href="https://space.bilibili.com/432103862?spm_id_from=333.788.0.0" target="_blank">Bilibili</a></li>
-      </ul>
+      </ul>`;
     });
     
   }
