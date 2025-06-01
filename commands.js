@@ -236,7 +236,7 @@ class CommandSystem {
     });
 
     this.register('blog', 'My blog', () => {
-        return `<p>My blog is <a href="" target="_blank">here</a>.</p>`;
+        return `<p>My blog is <a href="https://blog.soulter.top" target="_blank">here</a>.</p>`;
         }
     );
 
